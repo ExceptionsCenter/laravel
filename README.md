@@ -12,7 +12,7 @@ For now, this package supports **all Laravel versions from 5.3**.
 ### Composer
 In a Bash terminal:
 ```bash
-    composer require exceptions-center/laravel
+composer require exceptions-center/laravel
 ```
 
 ## Usage
