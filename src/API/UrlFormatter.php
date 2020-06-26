@@ -18,7 +18,7 @@ trait UrlFormatter {
      *
      * @var string
      */
-    protected $base = "http://exceptionhost.fr" ; //TODO : to change after the server URL
+    protected $base = 'http://exceptions-center.com' ;
 
     /**
      * @var array
