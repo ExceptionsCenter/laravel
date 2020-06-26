@@ -22,7 +22,7 @@ class ExceptionSender extends LaravelExceptionSender {
      *
      * @var string
      */
-    protected $key = "" ;
+    protected $key = '' ;
 
     /**
      * This value determines whether the exceptions
@@ -38,7 +38,7 @@ class ExceptionSender extends LaravelExceptionSender {
      *
      * @var bool
      */
-    protected $multithreading = true ;
+    protected $multithreading = false ;
 
     /**
      * Determine whether an error during the sending
