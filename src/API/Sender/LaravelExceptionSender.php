@@ -57,7 +57,7 @@ class LaravelExceptionSender extends AbstractExceptionSender {
      */
     public function shouldBeReported(Throwable $e = null) {
         return ! is_null($e)
-            && ! is_null($this->getProjectKey())
+            && ! empty($this->getProjectKey())
             && $this->isEnabled()
             && $this->expectedToBeReported($e) ;
     }
@@ -68,11 +68,19 @@ class LaravelExceptionSender extends AbstractExceptionSender {
      * @return LaravelExceptionSender
      */
     public static function make(Throwable $throwable, $request = null) {
-        $self            = new LaravelExceptionSender() ;
-        $self->exception = $throwable ;
-        $self->request   = $request ;
+        return (new static)->set($throwable, $request) ;
+    }
 
-        return $self ;
+    /**
+     * @param Throwable $throwable
+     * @param null $request
+     * @return LaravelExceptionSender
+     */
+    public function set(Throwable $throwable, $request = null) {
+        $this->exception = $throwable ;
+        $this->request   = $request ;
+
+        return $this ;
     }
 
 }

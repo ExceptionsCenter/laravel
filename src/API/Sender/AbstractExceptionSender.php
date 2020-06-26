@@ -167,7 +167,7 @@ abstract class AbstractExceptionSender implements Reportable, ExceptionUserContr
                     // Set the key of the project
                     $formatter->setParameter(
                         'project_key', $this->getProjectKey()
-                    );
+                    ) ;
 
                     // Set the user data
                     $formatter->setParameter(
