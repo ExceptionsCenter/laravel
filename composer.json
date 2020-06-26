@@ -1,0 +1,30 @@
+{
+    "name": "exceptions-center/laravel",
+    "description": "An Exception sender for the Exceptions' Center",
+    "keywords": ["exception", "laravel", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damien MOLINA",
+            "email": "damis01800@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": ">=5.3",
+        "monolog/monolog": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ExceptionsCenter\\Laravel\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ExceptionsCenter\\Laravel\\ExceptionsCenterServiceProvider"
+            ]
+        }
+    }
+}
