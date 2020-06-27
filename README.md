@@ -109,6 +109,25 @@ The current package allows sending the exceptions using a thread to save executi
 You can define all the information you want about the user with the methods ```getUserInformation()``` and ```getGuestInformation()```. Please, be careful regarding the data you send. Don't forget user's sensitive information should not leave your application, even for debuging.
 If you are using another auth guardian than the Laravel default Auth, you need to override the ```userIsLoggedIn()``` method.
 
+##### Event listener
+If you are using an other package that fire events when an exception is caught, then you can use the ```IncomingExceptionListener``` to handle this event.
+In your ```EventServiceProvider```, you just have to add:
+```php
+protected $listen = [
+    IncomingExceptionEvent::class => [
+        IncomingExceptionListener::class
+    ],
+];
+```
+where ```IncomingExceptionEvent``` is the event name. This event needs to implement ```getException()``` and ```getRequest()``` methods.
+
+### Test
+You can check whether the package is working with the Artisan command:
+```bash
+php artisan exception:test
+```
+*Note :* Did you execute ```php artisan config:clear``` ?
+
 ## Architecture
 This is the files architecture of the package:
 
