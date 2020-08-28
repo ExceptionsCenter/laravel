@@ -52,7 +52,7 @@ abstract class AbstractExceptionSender implements Reportable, ExceptionUserContr
      *
      * @var bool
      */
-    protected $multithreading = true ;
+    protected $multithreading = false ;
 
     /**
      * Determine whether an error during the sending
