@@ -54,13 +54,13 @@ You can access to a part of the available configuration using your ```config/app
     /*
      * Key of the project.
      */
-    'key' => 'project-key',
+    'key' => env('EXCEPTION_CENTER_KEY'),
 
     /*
      * Determine whether an incoming exception will
      * be sent to the Exceptions' Center.
      */
-    'enabled' => true,
+    'enabled' => env('EXCEPTION_CENTER_ENABLED', false),
 
     /*
      * Determine whether the threads are allowed to
@@ -81,6 +81,11 @@ You can access to a part of the available configuration using your ```config/app
      * wherever you put it.
      */
     'model' => \ExceptionsCenter\Laravel\ExceptionSender::class,
+    
+    /*
+     * The exception destination base URL.
+     */
+    'url' => env('EXCEPTION_CENTER_URL'),
 ],
 ```
 

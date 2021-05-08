@@ -68,12 +68,16 @@ class ExceptionTestCommand extends Command {
             return;
         }
 
-        $response = $center::make(new CheckExceptionCenterException)->send() ;
+        if(is_null($center->getBaseURL())) {
+            $this->alert("The project base URL hasn't been declared in the config file") ;
+            $this->clearComment() ;
+            return;
+        }
 
-        if(boolval($response)) {
+        if($center::make(new CheckExceptionCenterException)->send()) {
             $this->comment('Exception successfully sent!') ;
         } else {
-            $this->comment("An error occurred :(");
+            $this->comment("An error occurred :(") ;
         }
     }
 

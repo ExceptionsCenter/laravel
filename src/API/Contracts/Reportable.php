@@ -37,8 +37,8 @@ interface Reportable {
      *
      * @param array $parameters
      * @param string $url
-     * @return ExceptionResponse
+     * @return ExceptionResponse|null
      */
-    public function makeRequest(array $parameters, string $url) ;
+    public function makeRequest(array $parameters, string $url = null) ;
 
 }

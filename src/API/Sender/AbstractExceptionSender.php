@@ -16,12 +16,12 @@ use ExceptionsCenter\Laravel\API\Contracts\ExceptionUserContract;
  * Class AbstractExceptionSender
  * @package ExceptionsCenter\Laravel\API\Sender
  *
- * @property Throwable  exception
- * @property bool       enabled
- * @property bool       log
- * @property bool       multithreading
- * @property string     key
- * @property Request    request
+ * @property Throwable exception
+ * @property bool      enabled
+ * @property bool      log
+ * @property bool      multithreading
+ * @property string    key
+ * @property Request   request
  *
  * @author: Damien MOLINA
  */
@@ -70,21 +70,6 @@ abstract class AbstractExceptionSender implements Reportable, ExceptionUserContr
      * @var string
      */
     protected $key = "" ;
-
-    /**
-     * Get the config for the given key.
-     *
-     * @param string $key
-     * @param string $default
-     * @param bool $boolean
-     * @return string|bool
-     */
-    private function getConfig(string $key, string $default, bool $boolean = false) {
-        $config = config('app.exceptions.'.$key) ;
-        $value  = is_null($config) ? $default : $config ;
-
-        return $boolean ? boolval($value) : $value ;
-    }
 
     /**
      * Determine whether the exception sender is running.
@@ -142,9 +127,13 @@ abstract class AbstractExceptionSender implements Reportable, ExceptionUserContr
      *
      * @param array $parameters
      * @param string $url
-     * @return ExceptionResponse
+     * @return ExceptionResponse|null
      */
-    public function makeRequest(array $parameters, string $url) {
+    public function makeRequest(array $parameters, string $url = null) {
+        if($url == null) {
+            return null ;
+        }
+
         return new ExceptionResponse(
             cURL::make($url, $parameters)
         ) ;
@@ -177,6 +166,10 @@ abstract class AbstractExceptionSender implements Reportable, ExceptionUserContr
                     $response = $this->makeRequest(
                         $formatter->parameters(), $this->url('send')
                     ) ;
+
+                    if($response == null) {
+                        return false ;
+                    }
 
                     $response->manage() ;
 
